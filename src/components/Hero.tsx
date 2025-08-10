@@ -4,6 +4,8 @@ import { motion } from 'framer-motion';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
+import Image from 'next/image';
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH || '';
 
 export default function Hero() {
     return (
@@ -16,11 +18,14 @@ export default function Hero() {
                         transition={{ duration: 0.7, delay: 0.1 }}
                         className="flex justify-center mb-6"
                     >
-                        <img
-                            src="/varun.jpg"
+                        <Image
+                            src={`${basePath}/varun.jpg`}
                             alt="Varun Gunasekaran profile"
+                            width={160}
+                            height={160}
                             className="w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 border-blue-300 dark:border-cyan-400 shadow-xl object-cover bg-white dark:bg-slate-800 transition-all duration-500 hover:scale-105 hover:shadow-2xl"
                             style={{ boxShadow: '0 8px 32px 0 rgba(31, 38, 135, 0.15)' }}
+                            priority
                         />
                     </motion.div>
                     <motion.h1
@@ -59,7 +64,7 @@ export default function Hero() {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ duration: 0.5, delay: 0.6 }}
-                        href="/Varun_Resume_2025.pdf"
+                        href={`${basePath}/Varun_Resume_2025.pdf`}
                         download
                         className="group inline-block px-8 py-3 mb-8 rounded-full bg-gradient-to-r from-blue-700 via-blue-500 to-slate-500 dark:from-blue-400 dark:via-blue-600 dark:to-purple-600 text-white font-bold shadow-xl hover:from-blue-800 hover:to-blue-700 hover:via-blue-600 transition-all duration-300 text-lg border-2 border-transparent hover:border-blue-400 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-offset-2 drop-shadow-lg relative overflow-hidden"
                         whileHover={{ scale: 1.05 }}
