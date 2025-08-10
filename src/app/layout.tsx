@@ -25,12 +25,11 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body
-        className={`${inter.variable} ${firaCode.variable} antialiased bg-background-light dark:bg-background-dark text-text-light dark:text-text-dark`}
-      >
-        {children}
-        <div id="portal-root" />
+    <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
+      <body className="bg-white dark:bg-gray-900 min-h-screen">
+        <div className="relative">
+          {children}
+        </div>
       </body>
     </html>
   );

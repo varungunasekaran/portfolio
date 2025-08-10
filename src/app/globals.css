@@ -8,10 +8,57 @@
 
   /* Theme Colors */
   --background-light: #ffffff;
-  --background-dark: #0a0a0a;
-  --primary: #0070f3;
-  --primary-dark: #0761d1;
+  --gradient-color-1: rgb(var(--background-light));
+  --gradient-color-2: rgb(59, 130, 246);
+  --gradient-color-3: rgb(147, 51, 234);
 }
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.animate-gradient {
+  background: linear-gradient(-45deg, var(--gradient-color-1), var(--gradient-color-2), var(--gradient-color-3));
+  background-size: 400% 400%;
+  animation: gradient 15s ease infinite;
+}
+
+.backdrop-blur-sm {
+  backdrop-filter: blur(4px);
+}
+
+/* Custom animation for the typing effect */
+@keyframes cursor-blink {
+
+  0%,
+  100% {
+    border-color: transparent;
+  }
+
+  50% {
+    border-color: currentColor;
+  }
+}
+
+.typing-cursor {
+  display: inline-block;
+  width: 2px;
+  height: 1em;
+  background-color: currentColor;
+  margin-left: 2px;
+  animation: cursor-blink 1s step-end infinite;
+}
+
 
 @layer base {
   body {

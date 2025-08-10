@@ -1,73 +1,81 @@
 'use client';
 
 import { motion } from 'framer-motion';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import {
+    faReact, faAngular, faJs, faNode, faAws,
+    faMicrosoft, faDocker, faGitAlt
+} from '@fortawesome/free-brands-svg-icons';
 
 interface SkillCategory {
     title: string;
-    skills: string[];
+    skills: Array<{
+        name: string;
+        icon?: any;
+    }>;
 }
 
 const skillCategories: SkillCategory[] = [
     {
         title: "Frontend Technologies",
         skills: [
-            "Angular",
-            "JavaScript",
-            "Jest",
-            "Module Federation",
-            "Next.js",
-            "React",
-            "Single SPA",
-            "TypeScript",
-            "UI Library components",
-            "Vite",
-            "Vitest",
-            "Web components",
-            "Webpack"
+            { name: "React", icon: faReact },
+            { name: "Angular", icon: faAngular },
+            { name: "JavaScript", icon: faJs },
+            { name: "TypeScript", icon: faJs },
+            { name: "Next.js", icon: faReact },
+            { name: "Jest" },
+            { name: "Module Federation" },
+            { name: "Single SPA" },
+            { name: "UI Library components" },
+            { name: "Vite" },
+            { name: "Vitest" },
+            { name: "Web components" },
+            { name: "Webpack" }
         ]
     },
     {
         title: "Backend Technologies",
         skills: [
-            "C#",
-            "Class library",
-            "KeyVault",
-            "Liquibase",
-            "MS SQL",
-            "NET Core",
-            "OpenTelemetry",
-            "Polly",
-            "PostgreSQL",
-            "Redis",
-            "SignalR",
-            "Web API"
+            { name: "C#", icon: faMicrosoft },
+            { name: "NET Core", icon: faMicrosoft },
+            { name: "Node.js", icon: faNode },
+            { name: "PostgreSQL" },
+            { name: "MS SQL" },
+            { name: "Redis" },
+            { name: "KeyVault" },
+            { name: "Liquibase" },
+            { name: "OpenTelemetry" },
+            { name: "Polly" },
+            { name: "SignalR" },
+            { name: "Web API" }
         ]
     },
     {
         title: "DevOps & Cloud",
         skills: [
-            "ACR",
-            "APIM",
-            "App service",
-            "Azure DevOps",
-            "Azure Front Door",
-            "Git Actions",
-            "Storage Account",
-            "WAF",
-            "Azure",
-            "GCP"
+            { name: "Azure", icon: faMicrosoft },
+            { name: "AWS", icon: faAws },
+            { name: "Docker", icon: faDocker },
+            { name: "Git", icon: faGitAlt },
+            { name: "APIM" },
+            { name: "App Service" },
+            { name: "Azure DevOps" },
+            { name: "Azure Front Door" },
+            { name: "GitHub Actions" },
+            { name: "Storage Account" },
+            { name: "WAF" }
         ]
     },
     {
         title: "Tools & Others",
         skills: [
-            "Docker",
-            "Kubernetes",
-            "GraphQL",
-            "gRPC",
-            "REST",
-            "Kafka",
-            "IIS"
+            { name: "Kubernetes" },
+            { name: "GraphQL" },
+            { name: "gRPC" },
+            { name: "REST" },
+            { name: "Kafka" },
+            { name: "IIS" }
         ]
     }
 ];
@@ -80,7 +88,7 @@ export default function Skills() {
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
                     viewport={{ once: true }}
-                    className="text-3xl font-bold mb-12 text-center"
+                    className="text-3xl font-bold mb-12 text-center text-gray-800 dark:text-white"
                 >
                     Technical Skills
                 </motion.h2>
@@ -93,17 +101,19 @@ export default function Skills() {
                             whileInView={{ opacity: 1, y: 0 }}
                             viewport={{ once: true }}
                             transition={{ delay: index * 0.1 }}
-                            className="bg-background-light/5 dark:bg-background-dark/5 p-6 rounded-lg"
+                            className="bg-white/10 dark:bg-gray-800/50 backdrop-blur-sm p-6 rounded-lg shadow-lg hover:shadow-xl transition-all duration-300"
                         >
-                            <h3 className="text-xl font-bold mb-4 text-primary">{category.title}</h3>
-                            <div className="flex flex-wrap gap-2">
+                            <h3 className="text-xl font-bold mb-4 text-gray-800 dark:text-white">{category.title}</h3>
+                            <div className="flex flex-wrap gap-3">
                                 {category.skills.map((skill) => (
-                                    <span
-                                        key={skill}
-                                        className="px-3 py-1 bg-primary/10 dark:bg-primary/5 text-primary rounded-full text-sm"
+                                    <motion.span
+                                        key={skill.name}
+                                        whileHover={{ scale: 1.05 }}
+                                        className="px-3 py-1.5 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-gray-200 rounded-full text-sm flex items-center gap-2 transition-colors duration-300"
                                     >
-                                        {skill}
-                                    </span>
+                                        {skill.icon && <FontAwesomeIcon icon={skill.icon} className="h-4 w-4" />}
+                                        {skill.name}
+                                    </motion.span>
                                 ))}
                             </div>
                         </motion.div>
