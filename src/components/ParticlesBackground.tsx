@@ -1,28 +1,15 @@
 'use client';
 
-import { useCallback } from 'react';
 import Particles from "@tsparticles/react";
-import type { Engine, Container } from "tsparticles-engine";
-import { loadFull } from "tsparticles";
 import { useTheme } from 'next-themes';
 
 const ParticlesBackground = () => {
     const { theme } = useTheme();
     const isDark = theme === 'dark';
 
-    const particlesInit = useCallback(async (engine: any) => {
-        await loadFull(engine);
-    }, []);
-
-    const particlesLoaded = useCallback(async (container: Container | undefined) => {
-        // Container loaded
-    }, []);
-
     return (
         <Particles
             id="tsparticles"
-            // init={particlesInit}
-            // particlesLoaded={particlesLoaded}
             options={{
                 background: {
                     color: {

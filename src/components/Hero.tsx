@@ -5,60 +5,6 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 
-const TypingText = ({ text }: { text: string }) => {
-    const letters = Array.from(text);
-
-    const container = {
-        hidden: { opacity: 0 },
-        visible: (i = 1) => ({
-            opacity: 1,
-            transition: { staggerChildren: 0.03, delayChildren: 0.04 * i },
-        }),
-    };
-
-    const child = {
-        visible: {
-            opacity: 1,
-            x: 0,
-            y: 0,
-            transition: {
-                type: "spring" as "spring",
-                damping: 12,
-                stiffness: 100,
-            },
-        },
-        hidden: {
-            opacity: 0,
-            x: -20,
-            y: 10,
-            transition: {
-                type: "spring" as "spring",
-                damping: 12,
-                stiffness: 100,
-            },
-        },
-    };
-
-    return (
-        <motion.div
-            style={{ display: "flex", overflow: "hidden" }}
-            variants={container}
-            initial="hidden"
-            animate="visible"
-        >
-            {letters.map((letter, index) => (
-                <motion.span
-                    variants={child}
-                    key={index}
-                    className="text-primary"
-                >
-                    {letter === " " ? "\u00A0" : letter}
-                </motion.span>
-            ))}
-        </motion.div>
-    );
-};
-
 export default function Hero() {
     return (
         <section className="min-h-screen flex items-center justify-center py-20 relative overflow-hidden">
@@ -75,8 +21,8 @@ export default function Hero() {
                         className="mb-4"
                     >
                         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold">
-                            Hi, I'm{' '}
-                            <TypingText text="Varun Gunasekaran" />
+                            Hi, I'm <br />
+                            Varun Gunasekaran
                         </h1>
                     </motion.div>
 
