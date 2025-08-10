@@ -9,89 +9,68 @@ import { useState } from 'react';
 import ThemeToggle from './ThemeToggle';
 
 const navItems = [
-    { name: 'Home', path: '/' },
-    { name: 'About', path: '/about' },
-    { name: 'Experience', path: '/experience' },
-    { name: 'Projects', path: '/projects' },
-    { name: 'Contact', path: '/contact' },
+    { name: 'Home', path: '#home' },
+    { name: 'About', path: '#about' },
+    { name: 'Skills', path: '#skills' },
+    { name: 'Experience', path: '#experience' },
+    { name: 'Projects', path: '#projects' },
+    { name: 'Contact', path: '#contact' },
 ];
 
 export default function NavBar() {
-    const pathname = usePathname();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     return (
         <motion.nav
             initial={{ y: -100 }}
             animate={{ y: 0 }}
-            className="fixed w-full top-0 left-0 z-50 bg-white/80 dark:bg-gray-900/80 shadow-lg backdrop-blur-sm"
+            className="fixed w-full top-0 left-0 z-50 animate-gradient bg-gradient-to-r from-slate-900 via-blue-800 to-slate-700 dark:from-gray-950 dark:via-blue-900 dark:to-gray-900 shadow-2xl backdrop-blur-2xl border-b border-white/20 dark:border-gray-800"
         >
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="flex items-center justify-between h-16">
-                    <motion.div
-                        whileHover={{ scale: 1.1 }}
-                        className="flex items-center"
-                    >
-                        <Link href="/" className="text-xl font-bold text-gray-800 dark:text-white">
-                            Varun G
-                        </Link>
-                    </motion.div>
-
+                    <a href="#home" className="text-2xl font-extrabold bg-gradient-to-r from-blue-400 via-blue-600 to-purple-600 dark:from-blue-300 dark:via-blue-400 dark:to-purple-400 bg-clip-text text-transparent tracking-tight">
+                        VG
+                    </a>
                     {/* Desktop navigation */}
-                    <div className="hidden md:flex items-center space-x-6">
+                    <div className="hidden md:flex items-center space-x-2 lg:space-x-4">
                         {navItems.map((item) => (
-                            <motion.div
+                            <a
                                 key={item.path}
-                                whileHover={{ scale: 1.05 }}
+                                href={item.path}
+                                className="px-4 py-2 rounded-lg text-base font-medium transition-colors duration-200 text-white dark:text-gray-200 hover:bg-blue-700/20 dark:hover:bg-blue-400/20 hover:text-blue-200 dark:hover:text-blue-400"
                             >
-                                <Link
-                                    href={item.path}
-                                    className={`px-3 py-2 rounded-md text-sm font-medium transition-colors
-                                        ${pathname === item.path
-                                            ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
-                                            : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-                                        }`}
-                                >
-                                    {item.name}
-                                </Link>
-                            </motion.div>
+                                {item.name}
+                            </a>
                         ))}
-
-                        <div className="flex items-center space-x-4 ml-6 border-l border-gray-200 dark:border-gray-700 pl-6">
-                            <motion.a
-                                whileHover={{ scale: 1.2 }}
+                        <div className="flex items-center space-x-2 lg:space-x-4 ml-4 pl-4 border-l border-white/30 dark:border-gray-700">
+                            <a
                                 href="https://github.com/varungunasekaran"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                                className="text-white dark:text-gray-200 hover:text-blue-200 dark:hover:text-blue-400 transition-colors"
                             >
                                 <FontAwesomeIcon icon={faGithub} size="lg" />
-                            </motion.a>
-
-                            <motion.a
-                                whileHover={{ scale: 1.2 }}
+                            </a>
+                            <a
                                 href="https://www.linkedin.com/in/varun-gunasekaran-39958b292"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                                className="text-white dark:text-gray-200 hover:text-blue-200 dark:hover:text-blue-400 transition-colors"
                             >
                                 <FontAwesomeIcon icon={faLinkedin} size="lg" />
-                            </motion.a>
-
-                            <ThemeToggle />
+                            </a>
+                            {/* <ThemeToggle /> */}
                         </div>
                     </div>
-
                     {/* Mobile menu button */}
                     <div className="md:hidden flex items-center">
-                        <motion.button
-                            whileTap={{ scale: 0.95 }}
+                        <button
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                            className="text-white dark:text-gray-200 hover:text-blue-200 dark:hover:text-blue-400 focus:outline-none"
                             aria-label="Toggle menu"
                         >
                             <svg
-                                className="h-6 w-6"
+                                className="h-7 w-7"
                                 fill="none"
                                 strokeLinecap="round"
                                 strokeLinejoin="round"
@@ -105,10 +84,9 @@ export default function NavBar() {
                                     <path d="M4 6h16M4 12h16M4 18h16" />
                                 )}
                             </svg>
-                        </motion.button>
+                        </button>
                     </div>
                 </div>
-
                 {/* Mobile menu */}
                 <motion.div
                     initial={false}
@@ -116,45 +94,36 @@ export default function NavBar() {
                         height: isMobileMenuOpen ? 'auto' : 0,
                         opacity: isMobileMenuOpen ? 1 : 0,
                     }}
-                    className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'border-t border-gray-200 dark:border-gray-700' : ''
-                        }`}
+                    className={`md:hidden overflow-hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'border-t border-white/30 dark:border-gray-700' : ''}`}
                 >
-                    <div className="px-2 pt-2 pb-3 space-y-1">
+                    <div className="px-2 pt-2 pb-3 space-y-1 bg-gradient-to-br from-blue-600 via-purple-600 to-pink-500 dark:from-gray-900 dark:via-gray-800 dark:to-blue-900 rounded-b-2xl shadow-lg">
                         {navItems.map((item) => (
-                            <Link
+                            <a
                                 key={item.path}
                                 href={item.path}
-                                className={`block px-3 py-2 rounded-md text-base font-medium ${pathname === item.path
-                                    ? 'text-blue-600 dark:text-blue-400 bg-blue-50 dark:bg-blue-900/20'
-                                    : 'text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white'
-                                    }`}
+                                className="block px-4 py-2 rounded-lg text-base font-medium transition-colors duration-200 text-white dark:text-gray-200 hover:bg-blue-700/20 dark:hover:bg-blue-400/20 hover:text-blue-200 dark:hover:text-blue-400"
                                 onClick={() => setIsMobileMenuOpen(false)}
                             >
                                 {item.name}
-                            </Link>
+                            </a>
                         ))}
-
-                        <div className="flex items-center space-x-4 px-3 py-2">
-                            <motion.a
-                                whileHover={{ scale: 1.1 }}
+                        <div className="flex items-center space-x-4 px-3 py-2 mt-2 border-t border-white/30 dark:border-gray-700">
+                            <a
                                 href="https://github.com/varungunasekaran"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                                className="text-white dark:text-gray-200 hover:text-blue-200 dark:hover:text-blue-400 transition-colors"
                             >
                                 <FontAwesomeIcon icon={faGithub} size="lg" />
-                            </motion.a>
-
-                            <motion.a
-                                whileHover={{ scale: 1.1 }}
+                            </a>
+                            <a
                                 href="https://www.linkedin.com/in/varun-gunasekaran-39958b292"
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white"
+                                className="text-white dark:text-gray-200 hover:text-blue-200 dark:hover:text-blue-400 transition-colors"
                             >
                                 <FontAwesomeIcon icon={faLinkedin} size="lg" />
-                            </motion.a>
-
+                            </a>
                             <ThemeToggle />
                         </div>
                     </div>

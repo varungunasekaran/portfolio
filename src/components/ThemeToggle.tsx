@@ -1,37 +1,34 @@
 'use client'
 
-import { useEffect, useState } from 'react'
-import { motion } from 'framer-motion'
-import { FiSun, FiMoon } from 'react-icons/fi'
+import { useTheme } from 'next-themes';
+import { motion } from 'framer-motion';
+import { FiSun, FiMoon } from 'react-icons/fi';
+
+import { useEffect, useState } from 'react';
 
 export default function ThemeToggle() {
-    const [isDark, setIsDark] = useState(false)
+    const { theme, setTheme, resolvedTheme } = useTheme();
+    const [mounted, setMounted] = useState(false);
+    useEffect(() => { setMounted(true); }, []);
+    const isDark = (theme === 'dark' || resolvedTheme === 'dark');
 
-    useEffect(() => {
-        const root = window.document.documentElement
-        const initialColorValue = root.classList.contains('dark')
-        setIsDark(initialColorValue)
-    }, [])
-
-    const toggleDarkMode = () => {
-        const root = window.document.documentElement
-        root.classList.toggle('dark')
-        setIsDark(!isDark)
-    }
+    if (!mounted) return (
+        <span className="w-9 h-9 inline-block" />
+    );
 
     return (
         <motion.button
-            onClick={toggleDarkMode}
-            className="fixed bottom-6 right-6 p-3 rounded-full bg-background-light dark:bg-background-dark shadow-lg hover:shadow-xl transition-shadow"
+            onClick={() => setTheme(isDark ? 'light' : 'dark')}
+            className="p-2 rounded-full bg-gray-200 dark:bg-gray-700 hover:bg-gray-300 dark:hover:bg-gray-600 transition-colors"
             whileHover={{ scale: 1.1 }}
             whileTap={{ scale: 0.95 }}
             aria-label="Toggle dark mode"
         >
             {isDark ? (
-                <FiSun className="w-6 h-6 text-primary" />
+                <FiSun className="w-5 h-5 text-yellow-500" />
             ) : (
-                <FiMoon className="w-6 h-6 text-primary" />
+                <FiMoon className="w-5 h-5 text-blue-600" />
             )}
         </motion.button>
-    )
+    );
 }

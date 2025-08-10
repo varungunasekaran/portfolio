@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Inter, Fira_Code } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from 'next-themes';
 
 const inter = Inter({
   variable: "--font-inter",
@@ -25,11 +26,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className={`${inter.variable} ${firaCode.variable}`}>
-      <body className="bg-white dark:bg-gray-900 min-h-screen">
-        <div className="relative">
-          {children}
-        </div>
+    <html lang="en" suppressHydrationWarning>
+      <body className={`${inter.variable} ${firaCode.variable} bg-white dark:bg-gray-900 min-h-screen`}>
+        <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
+          <div className="relative">
+            {children}
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   );

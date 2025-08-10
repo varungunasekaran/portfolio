@@ -1,13 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import "tailwindcss";
 
 :root {
   --scroll-behavior: smooth !important;
   scroll-behavior: smooth;
 
   /* Theme Colors */
-  --background-light: #ffffff;
   --gradient-color-1: rgb(var(--background-light));
   --gradient-color-2: rgb(59, 130, 246);
   --gradient-color-3: rgb(147, 51, 234);
