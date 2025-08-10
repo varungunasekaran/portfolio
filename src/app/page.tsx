@@ -89,9 +89,15 @@ export default function Home() {
         <section id="contact" className="py-24 flex items-center justify-center">
           <div className="max-w-2xl mx-auto p-8 rounded-3xl shadow-xl bg-white/90 dark:bg-gray-900/90 border border-slate-100 dark:border-gray-800 backdrop-blur-md text-center">
             <h2 className="text-3xl font-bold mb-4 text-pink-700 dark:text-pink-300">Contact</h2>
-            <p className="text-lg text-gray-700 dark:text-gray-200 mb-2">
+            <p className="text-lg text-gray-700 dark:text-gray-200 mb-6">
               Feel free to reach out to me via email at <a href="mailto:harivarun05@gmail.com" className="text-blue-600 dark:text-blue-400 underline">harivarun05@gmail.com</a> or connect with me on LinkedIn.
             </p>
+            <div className="flex justify-center">
+              <div className="badge-base LI-profile-badge" data-locale="en_US" data-size="large" data-theme="dark" data-type="HORIZONTAL" data-vanity="varun-gunasekaran-39958b292" data-version="v1">
+              </div>
+            </div>
+            <script type="text/javascript" src="https://platform.linkedin.com/badges/js/profile.js" async defer></script>
+
           </div>
         </section>
       </div>
